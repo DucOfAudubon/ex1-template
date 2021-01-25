@@ -13,14 +13,17 @@ public final class Exercise1 {
         char testChar = 'a';
         int testInt = testChar;
         boolean[] testArr = new boolean[]{true,false,false,true};
-        boolean [] char2bit = char2bitArray(testChar); 
+        boolean[] char2bit = char2bitArray(testChar); 
+        bitArray2char(char2bit);
         printCharInt(testChar);
         printIntBase2(testInt);
         printBitArray(testArr);
         System.out.println("This is the char2bitArray method");
         for( int i = 0; i < char2bit.length; i++) {
-            System.out.print(char2bit[i]);
+            System.out.print(char2bit[i] + " ");
         }
+        System.out.println();
+        System.out.println("As a character, this bit array is " + bitArray2char(char2bit));
     }
 
     /**
@@ -90,7 +93,21 @@ public final class Exercise1 {
      * @return the character denoted by the bit array
      */
     static char bitArray2char(boolean[] arr) {
-      throw new java.lang.UnsupportedOperationException();
+      int[] inBinary = new int[arr.length];
+      for(int i = 0; i < arr.length; i++) {
+          inBinary[i] = arr[i] ? 1 : 0;
+          System.out.println(inBinary[i]);
+      }
+      int inDec = 0;
+      int exponent;
+      int place;
+      for(int i = 0; i < inBinary.length; i++) {
+          exponent = inBinary.length - i;
+          place = inBinary[i] * (2 ^ exponent);
+          inDec += inBinary[i] * (2 ^ exponent);
+      }
+      char bitArray2char = (char)inDec;
+      return bitArray2char;
     }
 
     /**
