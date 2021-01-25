@@ -10,6 +10,17 @@ public final class Exercise1 {
 
     public static void main(String[] args) {
         System.out.println("\n===============Hello=============");
+        char testChar = 'a';
+        int testInt = testChar;
+        boolean[] testArr = new boolean[]{true,false,false,true};
+        boolean [] char2bit = char2bitArray(testChar); 
+        printCharInt(testChar);
+        printIntBase2(testInt);
+        printBitArray(testArr);
+        System.out.println("This is the char2bitArray method");
+        for( int i = 0; i < char2bit.length; i++) {
+            System.out.print(char2bit[i]);
+        }
     }
 
     /**
@@ -24,7 +35,8 @@ public final class Exercise1 {
      */
 
     static void printCharInt(char c) {
-      throw new java.lang.UnsupportedOperationException();
+      int num = c;
+      System.out.println(num);
     }
 
     /**
@@ -33,7 +45,8 @@ public final class Exercise1 {
      * @param n the number to print
      */
     static void printIntBase2(int n) {
-      throw new java.lang.UnsupportedOperationException();
+      String bin = Integer.toBinaryString(n);
+      System.out.println(bin);
     }
 
     /**
@@ -42,7 +55,10 @@ public final class Exercise1 {
      * @param arr the boolean array to print
      */
     static void printBitArray(boolean[] arr) {
-      throw new java.lang.UnsupportedOperationException();
+      for (int i = 0; i < arr.length; i++){
+          int veracity = arr[i] ? 1 : 0;
+          System.out.print(veracity);
+      }
     }
 
     // part 2
@@ -53,7 +69,18 @@ public final class Exercise1 {
      * @return a boolean array of length 16 representing the bit presentation of the character
      */
     static boolean[] char2bitArray(char c) {
-      throw new java.lang.UnsupportedOperationException();
+      int num = c;
+      String Bina = Integer.toBinaryString(num);
+      for(int i = Bina.length(); i < 16; i++) {
+          Bina = "0" + Bina;
+      }
+      char[] charBina = Bina.toCharArray();
+      int len = charBina.length;
+      boolean[] sixteenBit = new boolean[len];
+      for(int i = 0; i < len; i++) {
+          sixteenBit[i] = (charBina[i] == '1');
+      } 
+      return sixteenBit;
     }
 
 
