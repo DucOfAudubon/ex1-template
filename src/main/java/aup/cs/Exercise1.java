@@ -10,11 +10,10 @@ public final class Exercise1 {
 
     public static void main(String[] args) {
         System.out.println("\n===============Hello=============");
-        char testChar = 'a';
+        char testChar = 'F';
         int testInt = testChar;
         boolean[] testArr = new boolean[]{true,false,false,true};
-        boolean[] char2bit = char2bitArray(testChar); 
-        bitArray2char(char2bit);
+        boolean[] char2bit = char2bitArray(testChar);
         printCharInt(testChar);
         printIntBase2(testInt);
         printBitArray(testArr);
@@ -96,15 +95,14 @@ public final class Exercise1 {
       int[] inBinary = new int[arr.length];
       for(int i = 0; i < arr.length; i++) {
           inBinary[i] = arr[i] ? 1 : 0;
-          System.out.println(inBinary[i]);
       }
       int inDec = 0;
-      int exponent;
-      int place;
+      double exponent;
+      double place;
       for(int i = 0; i < inBinary.length; i++) {
-          exponent = inBinary.length - i;
-          place = inBinary[i] * (2 ^ exponent);
-          inDec += inBinary[i] * (2 ^ exponent);
+          exponent = inBinary.length - i - 1;
+          place = Math.pow(2, exponent);
+          inDec += inBinary[i] * place;
       }
       char bitArray2char = (char)inDec;
       return bitArray2char;
@@ -119,7 +117,10 @@ public final class Exercise1 {
      * @param text an input string to test
      */
     static void testCoding(String text) {
-      throw new java.lang.UnsupportedOperationException();
+      char[] textInChars = test.toCharArray();
+      for(int i=0; i<textInChars.length; i++){
+          char2bitArray(textInChars[i]);
+      }
     }
 
     // part 3
