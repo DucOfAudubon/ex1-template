@@ -117,11 +117,20 @@ public final class Exercise1 {
      * @param text an input string to test
      */
     static void testCoding(String text) {
-      char[] textInChars = test.toCharArray();
+      System.out.println(text);
+      char[] textInChars = text.toCharArray();
+      char[] charArray = new char[text.length()];
       for(int i=0; i<textInChars.length; i++){
-          char2bitArray(textInChars[i]);
-          bitArray2Char()
+          char currentChar = textInChars[i];
+          boolean[] bitArray = char2bitArray(currentChar);
+          char finChar = bitArray2char(bitArray);
+          charArray[i] = finChar;
       }
+      String fin = "";
+      for(int i=0; i<charArray.length; i++){
+          fin = fin + charArray[i];
+      }
+      System.out.println(fin);
     }
 
     // part 3
