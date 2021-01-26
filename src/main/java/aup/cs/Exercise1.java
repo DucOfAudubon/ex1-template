@@ -120,6 +120,7 @@ public final class Exercise1 {
       char[] textInChars = test.toCharArray();
       for(int i=0; i<textInChars.length; i++){
           char2bitArray(textInChars[i]);
+          bitArray2Char()
       }
     }
 
