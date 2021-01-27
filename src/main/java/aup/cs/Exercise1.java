@@ -23,6 +23,10 @@ public final class Exercise1 {
         }
         System.out.println();
         System.out.println("As a character, this bit array is " + bitArray2char(char2bit));
+        testCoding("Hello");
+        boolean[] testSeed = new boolean[]{true, true, false, false, false};
+        boolean[] testCoefs = new boolean[]{true, false, true, false};
+        feedbackLfsr(testSeed, testCoefs);
     }
 
     /**
@@ -117,7 +121,7 @@ public final class Exercise1 {
      * @param text an input string to test
      */
     static void testCoding(String text) {
-      System.out.println(text);
+      System.out.println("Text before: " + text);
       char[] textInChars = text.toCharArray();
       char[] charArray = new char[text.length()];
       for(int i=0; i<textInChars.length; i++){
@@ -130,7 +134,7 @@ public final class Exercise1 {
       for(int i=0; i<charArray.length; i++){
           fin = fin + charArray[i];
       }
-      System.out.println(fin);
+      System.out.println("Text after: " + fin);
     }
 
     // part 3
@@ -142,7 +146,14 @@ public final class Exercise1 {
      * @return a boolean the combination of adding the multiplication of each bit with a coefficient
      */
     static boolean feedbackLfsr(boolean[] arr, boolean[] coefs) {
-      throw new java.lang.UnsupportedOperationException();
+      int maxlen = Math.max(arr.length, coefs.length);
+      int minlen = Math.min(arr.length, coefs.length);
+      boolean combo = arr[0] & coefs[0];
+      for(int i=0; i < maxlen; i++){
+          boolean product = arr[i % minlen] & coefs[i % minlen];
+          combo = combo | product;
+      }
+      return combo;
     }
 
     /**
