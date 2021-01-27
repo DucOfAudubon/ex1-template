@@ -24,9 +24,9 @@ public final class Exercise1 {
         System.out.println();
         System.out.println("As a character, this bit array is " + bitArray2char(char2bit));
         testCoding("Hello");
-        boolean[] testSeed = new boolean[]{true, true, false, false, false};
-        boolean[] testCoefs = new boolean[]{true, false, true, false};
-        feedbackLfsr(testSeed, testCoefs);
+        boolean[] testSeed = new boolean[]{true};
+        boolean[] testCoefs = new boolean[]{true};
+        System.out.println("This thing " + feedbackLfsr(testSeed, testCoefs));
     }
 
     /**
@@ -150,8 +150,8 @@ public final class Exercise1 {
       int minlen = Math.min(arr.length, coefs.length);
       boolean combo = arr[0] & coefs[0];
       for(int i=0; i < maxlen; i++){
-          boolean product = arr[i % minlen] & coefs[i % minlen];
-          combo = combo | product;
+          boolean product = (arr[i % minlen] & coefs[i % minlen]);
+          combo = (combo || product);
       }
       return combo;
     }
@@ -161,9 +161,54 @@ public final class Exercise1 {
      * @param arr the bit array (initially the seed)
      * @param coefs the binary coefficients
      * @return the next bit to use for encoding.
+     * This part is from Troy's section
      */
     static boolean feedbackUpdateLfsr(boolean[] arr, boolean[] coefs) {
-      throw new java.lang.UnsupportedOperationException();
+        System.out.println("FEEDBACKUPDATELSFR HAS A PROBLEM");
+
+        boolean[] newVals = new boolean[arr.length + 1];
+
+        for (int i = 0; i < arr.length; i++) {
+
+            newVals[i + 1] = arr[i];
+
+        }
+
+      boolean val = feedbackLfsr(arr, coefs);
+
+      /**
+       * I'm not sure what the rest of this does
+       * Why not just return val?
+       * In fact, if the goal here is just to return one boolean, not an array
+       * why even make the array?
+       * In fact, what even is the point of this method!?
+       * How is it different from feedbackLfsr?
+       */
+
+      newVals[0] = val;
+
+      arr = newVals;
+
+        for (int i = 0; i < newVals.length; i++) {
+
+        }
+
+      if (val == true) {
+
+          System.out.println("true");
+
+          return true;
+
+      }
+
+      else {
+
+          System.out.println("false");
+
+          return false;
+
+      }
+
     }
 
     /**
